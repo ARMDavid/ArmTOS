@@ -1,3 +1,5 @@
+Updates will be a bit slow as I have to reboot into Linux to do anything, RISC OS does not have a port of git yet, and the current Webbrowsers for RISC OS are not supported by the web interface for github.
+
 # ArmTOS
 This project is an attempt to create an Atari TOS ABI compatible Operating System for the ARM based Raspberry Pi SBC's, from the ground up.
 
