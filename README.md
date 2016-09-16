@@ -1,12 +1,7 @@
-Updates will be a bit slow as I have to reboot into Linux to do anything, RISC OS does not have a port of git yet, and the current Webbrowsers for RISC OS are not supported by the web interface for github.
-
 # ArmTOS
-This project is an attempt to create an Atari TOS ABI compatible Operating System for the ARM based Raspberry Pi SBC's, from the ground up.
+This project is a simple attempt to create a 68030 Dynamic Recompiling emulator that runs as the OS on the Raspberry Pi 0/B/B+/2B/3B single board computers, and allows running of 680x0 Atari TOS and MiNT compatible OS's with the correct drivers and TSR's.   That is to say that the goal is to implement a simple layer that alows using TOS with MiNT and whatever VDI, AES, and desktop you prefer as the main Operating System on a Raspberry Pi computer.
 
-Everything I provide here will be under a MIT license, things that are ported from others may be under other licenses, as that is up to the original author.   I beleive in true Open Source and will not use the GPL for anyting I create.
+# Method of implementation:
+Needless to say that there are a few things that just can not be done from inside the emulated 68030, such as USB and Ethernet.  for these there is a specialised interface in the XBIOS to allow calling drivers that run ARM native.   For the current versions these ARM native drivers are provided by Ultibo, as well as basic booting.
 
-I am beggining by using Ultibo as a bios to speed up development and not to have to worry about most of the Hardware specific stuff, especialy the USB stuff.
-
-For the first few versions I will be using a borrowed AES and VDI (the FreeTOS AES, and oVDISIS) ported to the ARM v6/7/8 CPU's.   These are both open source, both under the GPLv2.    I intend to replace these as time goes.
-
-This is likely to be a slow moving project, as it is a big one.
+There is also a simple interface to allow running ARM native applications that can call the 68K operating system through the provided TRAPs (which are mapped to SWIs on the ARM).   You just need to remember that the endianes is backward if calling the 68K OS from ARM Code.
