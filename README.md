@@ -1,14 +1,16 @@
 # Status Note:
-I am restarting this project from scratch in December of 2018.  I am aware that it had been a while since I had touched this Repo, though it is as it is.
+May 2019:  I have gotten a good bit of the core system working.  This includes memory management, task allocation/switching and management, some USB support, some filesystem support, a reasonably complete VDI (about 80%), a usable AES (have a good bit left to do), and some test applications.   I had started off working with a different API, though went back to the TOS/GEM API, as it iw one I know well and is common enough to be of use to others.
+
+I seem to be having trouble uploading files, sorry about that.  And I have a significant amount of code to upload for this project.
 
 # ArmTOS
-This project is a simple attempt to create a 68030 emulator that runs as the OS on the Raspberry Pi B/B+/2B/3B/3B+ single board computers, and allows running of 680x0 Atari TOS and MiNT compatible OS's with the correct drivers and TSR's.   That is to say that the goal is to implement a simple layer that alows using TOS with MiNT and whatever VDI, AES, and desktop you prefer as the main Operating System on a Raspberry Pi computer.
+The target has changed a bit :).
 
-I will be adding a seperate repo for the ported components under other licenses.   This will be especially important in the beginning with having to use EmuTOS and MiNT until/if they are replaced (I may end up sticking with them).
+This is a simple ARM based Operating System that is to have an API compatible with that of TOS/GEM as implemented on the Atari 680x0 based computers.  This is a one man project, so it is moving kind of slowly.
+
+Once enough of the system is working, and we have a native C compiler, I will also be adding a simple JIT 68030 emulator to run much original GEM based software, thus instantly increasing the available software library.
+
+# Status:
 
 # Method of implementation:
-Needless to say that there are a few things that just can not be done from inside the emulated 68030, such as USB and Ethernet.  for these there is a specialised interface in the XBIOS to allow calling drivers that run ARM native.   This makes it possible to have a truely modern implementation of TOS on ARM based computers.
-
-Over time more and more of the OS will be implemented as ARM native thus improving performance of the entire OS.  Though the normal means of implementing trap handlers on the 68K will be preserved for compatibility with extensions that may not be provided by the implementation of the OS.
-
-There is also a simple interface to allow running ARM native applications that can call the 68K operating system through the provided TRAPs (which are mapped to SWIs on the ARM).   You just need to remember that the endianes is backward if calling the 68K OS from ARM Code.
+The system is implemented in a more modular way from traditional TOS.   Each functional type in BIOS, GEMDOS, AES, VDI, etc has its own module for implementation.   This makes it easier to update components, maintain the codebase, and continue development of the project.
